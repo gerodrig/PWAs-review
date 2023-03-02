@@ -1,6 +1,6 @@
 //get url location
 const url = window.location.href;
-let swLocation = '/twitter-clone-PWA/sw.js';
+let swLocation = '/PWAs-review/twitter-clone-PWA/sw.js';
 
 //Define service worker
 if (navigator.serviceWorker) {
