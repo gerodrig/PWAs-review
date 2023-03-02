@@ -1,0 +1,3 @@
+
+# ignore certificates generated in all folders
+*.pem
