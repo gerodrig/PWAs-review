@@ -78,5 +78,34 @@ There are many automatic generators for the manifest.json file. Here are two tha
 
 You can explore them before continuing with the course, and I hope they will be useful to you as well.
 
-- https://app-manifest.firebaseapp.com/ (recommended)
-- https://tomitm.github.io/appmanifest/
+- [Manifest Generator 1](https://app-manifest.firebaseapp.com/) (recommended)
+- [Manifest Generator 2](https://tomitm.github.io/appmanifest/)
+
+## 07-indexedDB
+
+Exercise focuses on learning how to record data in a local database that works offline.
+
+The main idea is to be able to make local recordings without an internet connection so that when we regain communication with the server, we can synchronize the locally stored records.
+
+Sounds too good to be true? Well, it is possible to do so. Unfortunately, to work with this, we need something called indexeddb, which is somewhat complicated and not very user-friendly. However, we will still learn how to use it, and we will also focus on using an easy-to-use alternative that will solve the same problem.
+
+- [MDN - IndexedDB](https://developer.mozilla.org/es/docs/Web/API/IndexedDB_API)
+
+
+## 08-pouchdb-todo
+
+PouchDB is an open-source JavaScript library that provides a way to store and manage data locally within web browsers and mobile applications. It uses a NoSQL database model that enables developers to work with documents, rather than tables, and provides seamless synchronization with remote databases when internet connectivity is restored. PouchDB supports multiple data storage solutions, including IndexedDB, WebSQL, and LevelDB, and it can be used with a wide range of front-end frameworks, such as React and Angular. Overall, PouchDB offers a simple and flexible way to create offline-first applications that can work both online and offline.
+
+- [pouchDB](https://pouchdb.com/getting-started.html)
+
+
+## 09-pouchdb-manual
+
+PouchDB training project with the following functionality:
+
+- Creates a database called "messages".
+- Defines a message object with a timestamp, username, message, and synchronization status.
+- Inserts the message object into the database.
+- Reads all messages from the database when offline.
+- Changes the synchronization status of all objects in the database to "true".
+- Deletes all records from the database one by one, but only those that are already synchronized.
