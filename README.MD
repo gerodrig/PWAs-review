@@ -109,3 +109,46 @@ PouchDB training project with the following functionality:
 - Reads all messages from the database when offline.
 - Changes the synchronization status of all objects in the database to "true".
 - Deletes all records from the database one by one, but only those that are already synchronized.
+
+## 10-twitter-clone-PWA-offline
+
+In this sections offline posts are integrated to Folder 06. A server is included to help with the post and simulate an API. 
+
+
+## 11-push-notifications
+
+On this folder we will add to twitter clone project everything necessary to send and receive push notifications to customers subscribed to our application.
+
+We will review from how to send to how to receive a push notification, from how to configure our backend to how to delete subscriptions that are no longer of interest to us.
+
+Notifications in PWAs (Progressive Web Apps) are a way to send push notifications to users on desktop or mobile devices, even when the user is not actively using the PWA. These notifications appear as small pop-ups that display a message or an image, and they can be clicked to open a specific page or perform a specific action within the PWA.
+
+Notifications in PWAs are triggered by a backend server, which sends a push notification to the user's device using the Web Push protocol. The user's browser receives the push notification and displays it to the user, even if the PWA is closed or the user is not actively using the browser.
+
+To receive notifications, users must first grant permission for the PWA to send notifications. Once the user grants permission, the PWA can store a subscription object on the backend server that can be used to send notifications to that user's device.
+
+Notifications in PWAs are a powerful way to engage users and keep them informed about updates or new content within the PWA. However, they should be used sparingly and with care, as too many notifications can be intrusive and annoying to users. It's important to respect the user's privacy and provide clear opt-in and opt-out options for notifications.
+
+## 12-native-resources
+
+Examples with native resources that mobile devices have access to. We will also understand how the new ShareAPI works, which, although currently only works on Chrome for Android, will soon be supported by other browsers.
+
+To find more information about geolocation, we recommend using the following link:
+
+https://love2dev.com/blog/html-geolocation/
+
+## 13-angular-countries-PWA
+
+Example that uses the @angular/pwa package, On this example PWA is configured usgin the official @angular/pwa documentation, which will expand its capabilities over time.
+
+On this example a web application from scratch is built which consumes services and implemetns different caching strategies offered by this package.
+
+The official Angular package for quickly adding PWA features to an application. Remember that you can implement the service worker as you saw in the course, simply by creating it and then adding it to the finished Angular application.
+
+This package automates several things related to PWAs, but it still does not cover everything we saw in the course. It's up to you whether you want to implement it with @angular/pwa or manually.
+
+Documentation:
+
+install using ```ng add @angular/pwa```
+
+[@angular/pwa - official documentation](https://angular.io/guide/service-worker-config)

@@ -40,47 +40,65 @@ self.addEventListener('install', (e) => {
     .open(INMUTABLE_CACHE)
     .then((cache) => cache.addAll(APP_SHELL_INMUTABLE));
 
-    e.waitUntil(Promise.all([cacheStatic, cacheInmutable]));
+  e.waitUntil(Promise.all([cacheStatic, cacheInmutable]));
 });
-
 
 //Activate service worker and delete old caches
 self.addEventListener('activate', (e) => {
+  const response = caches.keys().then((keys) => {
+    keys.forEach((key) => {
+      //delete old static caches
+      if (key !== STATIC_CACHE && key.includes('static')) {
+        return caches.delete(key);
+      }
 
-    const response = caches.keys().then(keys => {
-
-        keys.forEach(key => {
-
-            //delete old static caches
-            if(key !== STATIC_CACHE && key.includes('static')){
-                return caches.delete(key);
-            }
-
-            //delete old dynamic caches
-            if(key !== DYNAMIC_CACHE && key.includes('dynamic')){
-                return caches.delete(key);
-            }
-        })
+      //delete old dynamic caches
+      if (key !== DYNAMIC_CACHE && key.includes('dynamic')) {
+        return caches.delete(key);
+      }
     });
+  });
 
-    e.waitUntil(response);
+  e.waitUntil(response);
 });
 
 //cache strategy: cache with network fallback
 self.addEventListener('fetch', (e) => {
+  let response;
+  if (e.request.url.includes('/api')) {
+    //return response
+    response = handleApiMessages(DYNAMIC_CACHE, e.request);
+  } else {
+    response = caches.match(e.request).then((res) => {
+      if (res) {
+        updateStaticCache(STATIC_CACHE, e.request, APP_SHELL_INMUTABLE);
+        return res;
+      }
 
-    const response = caches.match(e.request).then(res => {
-
-        if(res) return res;
-
-        //NETWORK FALLBACK
-        // console.log(e.request.url);
-        return fetch(e.request).then(newRes => {
-
-            return updateDynamicCache(DYNAMIC_CACHE, e.request, newRes);
-        });
+      //NETWORK FALLBACK
+      // console.log(e.request.url);
+      return fetch(e.request).then((newRes) => {
+        return updateDynamicCache(DYNAMIC_CACHE, e.request, newRes);
+      });
     });
+  }
 
-
-    e.respondWith( response );
+  e.respondWith(response);
 });
+
+//Network with cache fallback /update
+async function handleApiMessages(dynamicCache, req) {
+  try {
+    const response = await fetch(req);
+
+    if (response.ok) {
+      updateDynamicCache(dynamicCache, req, response.clone());
+
+      return response.clone();
+    }
+
+    return caches.match(req);
+  } catch (error) {
+    return caches.match(req);
+  }
+}

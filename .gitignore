@@ -3,3 +3,10 @@
 *.pem
 
 .vscode
+
+# ignore any node modules on any foler
+10-twitter-clone-PWA-offline/node_modules
+11-twitter-clone-PWA-notifications/node_modules
+12-native-resources/node_modules
+13-angular-countries-PWA/node_modules
+13-angular-countries-PWA/dist

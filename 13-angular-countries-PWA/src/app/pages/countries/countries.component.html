@@ -1,0 +1,12 @@
+
+
+<h1>Countries</h1>
+<hr>
+
+<ul class="list-group">
+  <li class="list-group-item list-group-item-action animated fadeIn fast" *ngFor="let country of countries">
+    <a [routerLink]="['/country', country.alpha3Code]" >
+        {{ country.name }}
+    </a>
+  </li>
+</ul>
